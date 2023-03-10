@@ -1,0 +1,45 @@
+RedisConfig:
+  Address: 127.0.0.1:6379
+  DB: 0
+  Password:
+DBConfig:
+  DBType: postgres
+  Username: postgres
+  Password:
+  Host: 127.0.0.1
+  DBName: sui_indexer
+  Port: 5432
+BaseConfig:
+  Mode: dev
+  IsChainRest: true
+  IsContractUpdate: false
+  UpdateObjectBatchSize: 1
+  RequestRetryTime: 5
+  FetchTxNum: 20
+  MovePackageConfig:
+    PackageId: 0xdec6c36334e10ca71f8e9b5748d14a5276c269e3
+  Chain:
+    ChainName: sui
+    Network: devnet
+    Rpc: https://fullnode.devnet.sui.io/
+Queue:
+  TransactionMsgQueue:
+    Type: redis
+    Enabled: true
+    RedisStreamConfig:
+      Topic: sui-indexer-devnet-transaction
+      GroupID: sui-indexer_devnet-transaction-1
+      Customer: local
+      CustomerQuantity: 10
+      CustomerPool: 100
+      MsgCount: 10
+  ObjectMsgQueue:
+    Type: redis
+    Enabled: true
+    RedisStreamConfig:
+      Topic: sui-indexer-devnet-object
+      GroupID: sui-indexer_devnet-object-1
+      Customer: local
+      CustomerQuantity: 1
+      CustomerPool: 10
+      MsgCount: 1
